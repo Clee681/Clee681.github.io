@@ -3,7 +3,6 @@ layout: post
 title: "A Small Case Study of Objects & Classes in Ruby"
 date: 2013-10-07 22:55
 comments: true
-published: false
 categories: 
 ---
 
@@ -61,13 +60,13 @@ Returning to the original expression, we now know that the receiver is the objec
 => [Regexp, Object, Kernel, BasicObject]
 ```
 
-So, we know that object is of the class Regex and has several ancestors. Looking into the documentation for the Regex and Object classes, we find that both classes define instance methods for the triple equals operator. 
+So, for the first expression, we know that object is of the class Regex and has several ancestors. Looking into the documentation for the Regex and Object classes, we find that both classes define instance methods for the triple equals operator. 
 
 The Object instance method: "Case Equality – For class Object, effectively the same as calling #==, but typically overridden by descendants to provide meaningful semantics in case statements."
 
 The Regex instance method: "Case Equality — Used in case statements."
 
-However, since Regex is the most immediate class, the Object inherits the method definition from Regex. The last bit of reference comes from how the case statement executes (described below).
+Since Regex is the most immediate class, the Object inherits the method definition from Regex. The last bit of reference comes from how the case statement executes (described below).
 
 ```ruby
 case obj
@@ -78,13 +77,9 @@ when obj_k
 end
 ```
 
-The case statement actually invokes the `===` method, not the `==` method. Further, the order of the method call is `obj_k === obj` and not `obj === obj_k`.
+From the newcomer's guide in the Ruby doc, "the case statement actually invokes the `===` method, not the `==` method. Further, the order of the method call is `obj_k === obj` and not `obj === obj_k`." This order allows the case statement to match `obj` in a more flexible way. Back to our example, since the method call is on a Regex object the Regex class defines the meaning of the `===` operator, which is to test whether the `obj` matches the pattern in `obj_k`. Since `"abc"` matches the pattern `/abc/`, the first expression returns true.
 
-The reason for this order is so that the case statement can "match" obj in more flexible ways. Three interesting cases are when obj_k is either a Module/Class, a Regexp, or a Range: The Module/Class class defines the "===" method as a test whether obj is an instance of the module/class or its descendants ("obj#kind_of? obj_k"). The Regexp class defines the "===" method as a test whether obj matches the pattern ("obj =~ obj_k"). The Range class defines the "===" method as a test whether obj is an element of the range ("obj_k.include? obj").
-
-Since `"abc"` matches the pattern `/abc/`, the first expression returns true.
-
-Looking into the second expression, we see that the `===` operator is being called on a String. 
+Moving on to the second expression, we see that the `===` operator is being called on the String Object. 
 
 ```ruby
 "abc".class
@@ -94,6 +89,4 @@ Looking into the second expression, we see that the `===` operator is being call
 => [String, Comparable, Object, Kernel, BasicObject]
 ```
 
-The String instance method defines the `===` operator with the following definition: "Equality—If obj is not a String, returns false. These two methods, == and ===, share the same implementation."
-
-Since `/abc/` is not equal to `"abc"`, the second expression returns false.
+As we would now expect, we can look into the String documentation to look for the instance method `===`. There we see that `==` and `===` test for equality and share the same implementation. Since `/abc/` is not equal to `"abc"`, the second expression returns false.
