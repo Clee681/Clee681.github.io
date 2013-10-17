@@ -3,7 +3,7 @@ layout: post
 title: "A Small Case Study of Objects & Classes in Ruby"
 date: 2013-10-07 22:55
 comments: true
-categories: 
+categories: Ruby Objects Classes
 ---
 
 While flipping through a beginner ruby presentation on SpeakerDeck, I came across a slide with the following expressions in Ian Bishop's "Let's Talk About Ruby" presentation.
@@ -20,7 +20,7 @@ What?!?! How can that be?
 
 After some research, I was finally able to make sense of the expressions and their respective return values. Before diving into the interpretation of the expressions, it's important to take a slight detour into the inner workings of Ruby. We know that "everything in Ruby is an object", but what does that really mean?
 
-Everything in Ruby is an object. Objects have two distinct characteristics: state and behavior. State defines the attributes of the object (i.e. data about the object), while behavior enables the object to interact with other objects. In Ruby, variables are used to store the attributes of an object, while methods enable the objects to interact with other objects.
+Objects have two distinct characteristics: state and behavior. State defines the attributes of the object (i.e. data about the object), while behavior enables the object to interact with other objects. In Ruby, variables are used to store the attributes of an object, while methods enable the objects to interact with other objects.
 
 How are objects created? "Classes" in Ruby serve as the blueprint for creating new objects. Rather than having to define state and behavior for every object created, Ruby allows the programmer to preset attributes and behavior. Consequently, one set of definitions can be used to create new instances of similar objects. This construct is analogous to animals in the real world. For example, all dogs share a base level of attributes and behaviors. By creating a Dog class, the programmer can group all of those definitions under one roof thereby consolidating the code and following the DRY (Don't Repeat Yourself) principle.
 
