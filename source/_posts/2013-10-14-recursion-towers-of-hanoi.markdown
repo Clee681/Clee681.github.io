@@ -6,14 +6,14 @@ comments: true
 categories: Recursion Ruby
 ---
 
-During my second week of learning how to code at the Flatiron School, we were given the Towers of Hanoi problem to apply our new found knowledge of recursion. Needless to say, it was really challenging. From my experience, what makes Towers of Hanoi difficult is two-fold. First, recognizing the pattern was far from obvious (I spent hours painstakingly moving paper discs around). Second, once you have an algorithm to solve the problem, it's not exactly clear how the computer executes the recursion calls. This post is intended to help shed light on the latter.
+During my second week of learning how to code at the Flatiron School, we were given the Towers of Hanoi problem to apply our new-found knowledge of recursion. Needless to say, it was really challenging. From my experience, what makes Towers of Hanoi difficult is two-fold. First, recognizing the pattern was far from obvious (I spent hours painstakingly moving paper discs around). Second, once you have an algorithm to solve the problem, it's not exactly clear how the computer executes the recursion calls. This post is intended to help shed light on the latter.
 
 For those not familiar with the rules, there are three pegs (source, spare, and destination). The goal is to move all of the discs from the source peg to the destination peg one at a time without ever having a larger disc on top of a smaller disc. As shown in the diagram below, let's assume that the 'A' peg is the source peg, 'B' peg is the spare peg, and the 'C' peg is the destination peg.
 
 {% img http://www.cs.brandeis.edu/~storer/JimPuzzles/MANIP/TowersOfHanoi/TowersOfHanoiFigure.jpg %}
 *Source: [Brandeis University, CS Department](http://www.cs.brandeis.edu/~storer/JimPuzzles/MANIP/TowersOfHanoi/TowersOfHanoiFigure.jpg)*
 
-Conceptually, we can break the problem down into a few moves. First, we need to move n-1 discs to the spare disc. Then, we are free to move the largest disc (nth disc) to the destination peg. Once we have the largest disc on the destination peg, we need to move the original n-1 discs (now on the spare peg) to the destination peg. With this logic, we can define a function that looks like the algorithm in the figure below.
+Conceptually, we can break the problem down into a few moves. First, we need to move n-1 discs to the spare peg. Then, we are free to move the largest disc (nth disc) to the destination peg. Once we have the largest disc on the destination peg, we need to move the original n-1 discs (now on the spare peg) to the destination peg. With this logic, we can define a function that looks like the algorithm in the figure below.
 
 ```
 FUNCTION MoveTower(disc, source, destination, spare):
