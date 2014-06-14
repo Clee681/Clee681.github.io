@@ -66,7 +66,7 @@ blockquote {
 }
 
 code, pre {
-  font-family:Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, monospace;
+  font-family:Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
   color:#333;
   font-size:12px;
 }
@@ -104,9 +104,13 @@ img {
 }
 
 header {
-  width:270px;
+  width:250px;
   float:left;
   position:fixed;
+}
+
+header img {
+  padding: 5px 0;
 }
 
 header ul {
@@ -130,18 +134,14 @@ header ul {
 }
 
 header li {
-  width:89px;
+  width:50px;
   float:left;
-  border-right:1px solid #d2d2d2;
   height:40px;
 }
 
-header li:first-child a {
-  border-radius:5px 0 0 5px;
-}
-
-header li:last-child a {
-  border-radius:0 5px 5px 0;
+header ol {
+  list-style: none;
+  padding: 0 0 25px 0;
 }
 
 header ul a {
@@ -192,7 +192,7 @@ header ul a strong {
 }
 
 section {
-  width:500px;
+  width:550px;
   float:right;
   padding-bottom:50px;
 }
@@ -213,6 +213,56 @@ footer {
   float:left;
   position:fixed;
   bottom:50px;
+}
+
+.schools {
+  display: block;
+}
+
+.school {
+float: left;
+padding: 0 25px 15px 0;
+}
+
+.school strong {
+  font-size: 14px;
+  color: #555;
+}
+
+.jobs {
+  display: block;
+}
+
+.job {
+float: left;
+padding: 0 25px 15px 0;
+}
+
+.job strong {
+  font-size: 14px;
+  color: #555;
+}
+
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+ 
+.clearfix {
+  display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+  display: block;
+}
+ 
+* html .clearfix {
+  height: 1%;
 }
 
 @media print, screen and (max-width: 960px) {
@@ -278,10 +328,20 @@ footer {
   }
 }
 
+@media print, screen and (max-height: 550px) {
+  footer {
+    display: none;
+  }
+}
+
 @media print {
   body {
     padding:0.4in;
     font-size:12pt;
     color:#444;
   }
+}
+
+#name {
+  margin-top: 20px;
 }
