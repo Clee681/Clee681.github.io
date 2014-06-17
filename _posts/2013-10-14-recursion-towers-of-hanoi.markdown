@@ -25,7 +25,7 @@ END IF
 ```
 *Source: [Carnegie Mellon, CS Department](http://www.cs.cmu.edu/~cburch/survey/recurse/hanoiimpl.html)*
 
-However, you will notice that we are calling the original function again whenever we call the function with a number of discs greater than zero. This makes sense since moving n-1 discs all together is not a legal move. Thus, the same function is called again with n-1 discs, and the pattern continues until we reach the base case where the number of discs is equal to one and the base case solution executes.
+You will notice that we are calling the original function again whenever we call the function with a number of discs greater than zero. This recursive call is necessary because moving n-1 discs all together is not a legal move. Thus, the same function is called again with n-1 discs, and the pattern continues until we reach the base case where the number of discs is equal to one, and the base case solution executes.
 
 The above pattern is both what makes recursion powerful and hard to understand. Given the repetition of the same logic, it's helpful to be able to make recursive function calls as it enables us to have a concise solution. However, tracing the execution becomes difficult given the nested nature of the function calls.
 
